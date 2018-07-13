@@ -25,12 +25,14 @@ export class RoomCreatePage {
     , public userProvider: UserProvider) {
   }
   user: any = {
-    userId :  0,
-    userName : ''
+    userId: 0,
+    userName: ''
   };
   ionViewWillEnter() {
     this.userProvider.getUser().then((res) => {
-      this.user = res;
+      if (res) {
+        this.user = res;
+      }
     })
   }
 
@@ -42,7 +44,7 @@ export class RoomCreatePage {
     if (myFrom.roomName && myFrom.userName) {
       //var myroom = this.roomProvider.create(myFrom.roomName, myFrom.password);
 
-      this.user.userName  = myFrom.userName;
+      this.user.userName = myFrom.userName;
 
       this.roomProvider.createRoom(myFrom.roomName, this.user)
         .subscribe((res) => {
