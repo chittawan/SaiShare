@@ -1,0 +1,32 @@
+<!--
+  Generated template for the RoomJoinPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>room-join</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form novalidate #myForm="ngForm" (ngSubmit)="join(myForm.value)">
+    <ion-list>      
+      <ion-item>
+        <ion-label floating>Room Code</ion-label>
+        <ion-input type="text" name="roomId" ngModel required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" name="userName" ngModel required minlength="3"></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <button ion-button full color="dark"  type="submit" [disabled]="!myForm.form.valid">Join</button>
+  </form>
+</ion-content>
