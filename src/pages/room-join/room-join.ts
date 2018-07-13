@@ -20,16 +20,20 @@ import { UserProvider } from '../../providers/user/user';
 })
 export class RoomJoinPage {
 
-  user : any
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
+  user: any = {
+    userId : 0
+  }
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
     public roomProvider: RoomProvider,
     public userProvider: UserProvider) {
   }
 
   ionViewWillEnter() {
     this.userProvider.getUser().then((res) => {
-      this.user = res;
+      if (res) {
+        this.user = res;
+      }
     })
   }
 
@@ -39,15 +43,15 @@ export class RoomJoinPage {
 
   join(myFrom) {
     if (myFrom.roomId && myFrom.userName) {
-      this.roomProvider.joinRoom(myFrom.roomId, myFrom.userName)
+      this.roomProvider.joinRoom(myFrom.roomId, this.user)
         .subscribe((res) => {
           if (res) {
             debugger;
             this.navCtrl.push(MapPage, {
-              roomId : res.roomId,
-              roomName : res.roomName,
-              userId : res.userOnRoom[0].userId,
-              userName : res.userOnRoom[0].userName
+              roomId: res.roomId,
+              roomName: res.roomName,
+              userId: res.userOnRoom[0].userId,
+              userName: res.userOnRoom[0].userName
             });
           }
         })

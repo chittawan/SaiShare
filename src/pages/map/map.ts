@@ -143,7 +143,7 @@ export class MapPage {
             shadowSize: [35, 35], // size of the shadow
             iconAnchor: [12, 25], // point of the icon which will correspond to marker's location
             shadowAnchor: [4, 25],  // the same for the shadow
-            popupAnchor: [2, -40] // point from which the popup should open relative to the iconAnchor
+            popupAnchor: [1, -25] // point from which the popup should open relative to the iconAnchor
         });
                       
           var myMarker = L.marker([user.lat, user.lng], { icon: mapIcon }).bindPopup(user.userName);

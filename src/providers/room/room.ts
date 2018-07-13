@@ -45,10 +45,11 @@ export class RoomProvider {
         .catch(this.handleError);
   }
 
-  joinRoom (roomId: string, userName: string):  Observable<any> {
+  joinRoom (roomId: string, user: any):  Observable<any> {
     var url = this.host + "/Room/JoinRoom";
     var userOnRoom = {
-      UserName: userName,
+      UserId : user.userId,
+      UserName: user.userName,
       Lat: 0,
       Lng: 0
     }
