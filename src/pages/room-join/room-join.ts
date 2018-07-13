@@ -32,6 +32,7 @@ export class RoomJoinPage {
   ionViewWillEnter() {
     this.userProvider.getUser().then((res) => {
       if (res) {
+        debugger;
         this.user = res;
       }
     })
@@ -43,11 +44,12 @@ export class RoomJoinPage {
 
   join(myFrom) {
     if (myFrom.roomId && myFrom.userName) {
+      this.user.userName = myFrom.userName;
       this.roomProvider.joinRoom(myFrom.roomId, this.user)
         .subscribe((res) => {
           if (res) {
-            debugger;
-            this.navCtrl.push(MapPage, {
+            this.userProvider.setUser(res.userOnRoom[0].userId, res.userOnRoom[0].userName);
+            this.navCtrl.push(MapPage, { 
               roomId: res.roomId,
               roomName: res.roomName,
               userId: res.userOnRoom[0].userId,

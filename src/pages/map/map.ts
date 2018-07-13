@@ -127,7 +127,9 @@ export class MapPage {
   ionViewCanLeave() {
     document.getElementById("map").outerHTML = "";
   }
-
+  ionViewWillLeave(){
+    
+  }
   updateMaskByUsers(users) {
     this.users = users;
     users.forEach(user => {

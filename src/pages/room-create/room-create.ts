@@ -49,6 +49,7 @@ export class RoomCreatePage {
       this.roomProvider.createRoom(myFrom.roomName, this.user)
         .subscribe((res) => {
           if (res) {
+            this.userProvider.setUser(res.userOnRoom[0].userId, res.userOnRoom[0].userName);
             this.navCtrl.push(MapPage, {
               roomId: res.roomId,
               roomName: res.roomName,
@@ -56,7 +57,6 @@ export class RoomCreatePage {
               userName: res.userOnRoom[0].userName
             });
 
-            this.userProvider.setUser(res.userOnRoom[0].userId, res.userOnRoom[0].userName);
           }
         },
           (error) => {
